@@ -118,11 +118,17 @@ body {
     margin-bottom: 30px;
 }
 
-.section-title {
-    font-size: 52px;
+.section-label {
+    color: #2563eb;
+    font-size: 1rem;
     font-weight: 800;
-    color: #111827;
-    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+
+.section-main-label {
+    font-size: 2.6rem;
     margin-bottom: 0;
 }
 
@@ -264,8 +270,8 @@ footer {
         padding: 18px 16px;
     }
 
-    .section-title {
-        font-size: 42px;
+    .section-main-label {
+        font-size: 2.1rem;
     }
 }
 
@@ -287,7 +293,7 @@ footer {
         padding: 22px;
     }
 
-    .section-title {
-        font-size: 36px;
+    .section-main-label {
+        font-size: 1.8rem;
     }
 }
