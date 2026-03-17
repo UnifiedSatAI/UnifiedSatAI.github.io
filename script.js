@@ -10,6 +10,38 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
+/* ===== DYNAMIC SATELLITE BACKGROUND IMAGES ===== */
+(function () {
+    const layers = document.querySelectorAll('#dynamic-bg .bg-layer');
+    if (layers.length < 2) return;
+
+    const backgroundImages = [
+        'https://images-assets.nasa.gov/image/PIA12235/PIA12235~orig.jpg',
+        'https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001861/GSFC_20171208_Archive_e001861~orig.jpg',
+        'https://images-assets.nasa.gov/image/iss071e414090/iss071e414090~orig.jpg'
+    ];
+
+    let activeLayer = 0;
+    let imageIndex = 0;
+
+    function setImage(layerIndex, imageUrl) {
+        layers[layerIndex].style.backgroundImage = `url("${imageUrl}")`;
+    }
+
+    setImage(activeLayer, backgroundImages[imageIndex]);
+
+    setInterval(() => {
+        imageIndex = (imageIndex + 1) % backgroundImages.length;
+        const nextLayer = (activeLayer + 1) % layers.length;
+
+        setImage(nextLayer, backgroundImages[imageIndex]);
+        layers[nextLayer].classList.add('active');
+        layers[activeLayer].classList.remove('active');
+
+        activeLayer = nextLayer;
+    }, 7000);
+})();
+
 /* ===== CANVAS SPACE BACKGROUND ===== */
 (function () {
     const canvas = document.getElementById('bg-canvas');
@@ -163,9 +195,9 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 
         /* Deep space gradient background */
         const grad = ctx.createLinearGradient(0, 0, W, H);
-        grad.addColorStop(0,   '#060d1f');
-        grad.addColorStop(0.5, '#0a1628');
-        grad.addColorStop(1,   '#060d1f');
+        grad.addColorStop(0,   'rgba(6, 13, 31, 0.54)');
+        grad.addColorStop(0.5, 'rgba(10, 22, 40, 0.48)');
+        grad.addColorStop(1,   'rgba(6, 13, 31, 0.54)');
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, W, H);
 
