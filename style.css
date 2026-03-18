@@ -579,11 +579,7 @@ section li {
 }
 
 .paper-description {
-  margin: 0 0 20px 0;
-  color: #b8d8ff;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  flex-grow: 1;
+  display: none;
 }
 
 .paper-btn {
