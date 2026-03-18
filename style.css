@@ -61,7 +61,7 @@ nav {
   top: 0;
   z-index: 10;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 16px 32px;
   background: rgba(5, 25, 47, 0.82);
@@ -70,11 +70,18 @@ nav {
 }
 
 nav h1 {
-  margin: 0;
-  font-size: 1.18rem;
-  color: #d0e8ff;
+  display: none;
 }
 
+nav ul {
+  gap: 28px;
+}
+
+nav a {
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 10px 12px;
+}
 nav ul {
   display: flex;
   gap: 18px;
