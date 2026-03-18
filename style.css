@@ -17,7 +17,7 @@ html {
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    position: relative;
     margin: 0;
     background: linear-gradient(180deg, #eef4ff 0%, #f7faff 35%, #ffffff 100%);
     color: var(--text);
@@ -47,6 +47,7 @@ nav ul {
 }
 
 nav a {
+    color: rgba(255, 255, 255, 0.92);
     text-decoration: none;
     color: var(--text);
     font-weight: 600;
@@ -56,8 +57,6 @@ nav a {
 nav a:hover {
     color: var(--accent);
 }
-
-/* HERO */
 
 .hero {
     position: relative;
@@ -183,17 +182,20 @@ nav a:hover {
     animation: pulseSignal 6s ease-out infinite 1.2s;
 }
 
-/* SECTIONS */
-
-section {
-    padding: 60px 80px;
+section > p {
+    max-width: 860px;
+    margin: 0 auto 18px;
+    text-align: center;
+    line-height: 1.8;
+    color: var(--muted);
 }
 
 .team-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 30px;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 32px;
 }
 
 .member {
@@ -211,61 +213,99 @@ section {
 }
 
 .role {
-    color: #5a67d8;
+    margin-top: 0;
+    color: var(--accent);
     font-weight: 600;
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #f1f1f1;
-    margin-top: 40px;
+.contact {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 14px;
 }
 
-/* RESULTS TABLE */
+.contact a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
 
 .results-table {
     width: 100%;
+    margin-top: 28px;
     border-collapse: collapse;
-    margin-top: 30px;
-    background: white;
-    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.96);
 }
 
 .results-table th,
 .results-table td {
     padding: 15px;
     text-align: center;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(19, 35, 58, 0.08);
 }
 
 .results-table th {
-    background: #5a67d8;
+    background: #183761;
     color: white;
     font-weight: 600;
 }
 
 .results-table tr:hover {
-    background: #f9f9f9;
+    background: rgba(47, 118, 255, 0.05);
 }
 
-.contact {
-    margin-top: 10px;
-    display: flex;
-    gap: 12px;
+footer {
+    padding: 12px 24px 36px;
+    text-align: center;
+    color: #415a78;
 }
 
-.contact a {
-    font-size: 14px;
-    text-decoration: none;
-    color: #5a67d8;
-    font-weight: 500;
+@media (max-width: 900px) {
+    nav ul {
+        gap: 18px;
+        flex-wrap: wrap;
+    }
+
+    .hero {
+        min-height: 50vh;
+        padding-top: 84px;
+    }
+
+    .hero-content {
+        padding: 32px 24px;
+    }
 }
 
-.contact a:hover {
-    text-decoration: underline;
+@media (max-width: 640px) {
+    nav {
+        padding: 16px;
+    }
+
+    nav ul {
+        gap: 14px;
+    }
+
+    .hero {
+        min-height: 46vh;
+    }
+
+    section {
+        width: min(100% - 20px, 1120px);
+        padding: 28px 18px;
+        border-radius: 20px;
+    }
+
+    .results-table {
+        display: block;
+        overflow-x: auto;
+    }
 }
 
 @keyframes starDrift {
