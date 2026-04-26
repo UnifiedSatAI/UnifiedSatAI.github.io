@@ -32,7 +32,7 @@
     <h2>Introduction</h2>
     <p>The project Unified Deep Learning Benchmark for Satellite Image Restoration and Generation focuses on developing a standardized and reproducible benchmarking framework for evaluating modern deep learning models used in satellite image processing. In current research, different datasets, preprocessing methods, and evaluation metrics are often used independently, making it difficult to fairly compare results across models and tasks.</p>
     
-    <p>To address this limitation, the proposed system provides a unified evaluation pipeline that supports multiple satellite image processing tasks, including Cloud Removal (CR), Super-Resolution (SR), and High-Definition (HD) image generation. The framework integrates widely used remote sensing datasets such as AllClear, SEN12MS-CR-TS, WorldStrat, PROBA-V SR, and SAT25K, while applying consistent normalization, spectral alignment, and metric evaluation procedures.</p>
+    <p>To address this limitation, the proposed system provides a unified evaluation pipeline that supports multiple satellite image processing tasks, including Cloud Removal (CR) and Super-Resolution (SR) image generation. The framework integrates widely used remote sensing datasets such as AllClear, SEN12MS-CR-TS, WorldStrat, PROBA-V SR, and SAT25K, while applying consistent normalization, spectral alignment, and metric evaluation procedures.</p>
     
     <p>The goal of this project is to ensure fair comparison, reproducibility, and transparency in satellite image restoration and generation experiments by allowing different models to be tested under the same conditions. By combining dataset handling, model evaluation, metric computation, and visualization into a single system, the project provides a reliable tool for researchers working in remote sensing and deep learning.</p>
     
@@ -96,12 +96,42 @@
 
 <section id="results">
     <h2>Results</h2>
-    <div class="results-showcase">
-        <div class="result-image-container">
-            <img src="assets/sample1.png" alt="Sample 1 - Cloud Removal Results" class="clickable-image">
+    <p class="results-intro">Explore the model outputs across different datasets and processing tasks. Click on any image to view it in full resolution.</p>
+    
+    <div class="results-container">
+        <div class="tab-navigation">
+            <button class="tab-btn active" data-tab="ctgan">CTGAN</button>
+            <button class="tab-btn" data-tab="multitemporal">Multi-Temporal L2</button>
+            <button class="tab-btn" data-tab="nosar">NoSAR</button>
+            <button class="tab-btn" data-tab="utae">U-TAE</button>
         </div>
-        <div class="result-image-container">
-            <img src="assets/sample2.png" alt="Sample 2 - Satellite Image Processing" class="clickable-image">
+
+        <!-- CTGAN Tab -->
+        <div class="tab-content active" id="ctgan">
+            <div class="image-grid" id="ctgan-grid">
+                <!-- Images will be loaded dynamically -->
+            </div>
+        </div>
+
+        <!-- Multi-Temporal L2 Tab -->
+        <div class="tab-content" id="multitemporal">
+            <div class="image-grid" id="multitemporal-grid">
+                <!-- Images will be loaded dynamically -->
+            </div>
+        </div>
+
+        <!-- NoSAR Tab -->
+        <div class="tab-content" id="nosar">
+            <div class="image-grid" id="nosar-grid">
+                <!-- Images will be loaded dynamically -->
+            </div>
+        </div>
+
+        <!-- U-TAE Tab -->
+        <div class="tab-content" id="utae">
+            <div class="image-grid" id="utae-grid">
+                <!-- Images will be loaded dynamically -->
+            </div>
         </div>
     </div>
 </section>

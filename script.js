@@ -81,3 +81,107 @@ sections.forEach(section => {
   observer.observe(section);
 });
 
+// Tab Navigation and Image Loading for Results
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+// Model data configuration
+const modelData = {
+  ctgan: {
+    name: 'CTGAN',
+    folder: 'images_ctgan',
+    images: [
+      'roi38068_0000.png',
+      'roi393625_0001.png',
+      'roi782676_0002.png'
+    ]
+  },
+  multitemporal: {
+    name: 'Multi-Temporal L2',
+    folder: 'MultiTemporalL2',
+    images: [
+      'roi14579_0074.png', 'roi159513_0083.png', 'roi16115_0062.png',
+      'roi171977_0026.png', 'roi181417_0059.png', 'roi228063_0027.png',
+      'roi23822_0084.png', 'roi25954_0054.png', 'roi263079_0077.png',
+      'roi265823_0049.png', 'roi271513_0017.png', 'roi274931_0080.png'
+    ]
+  },
+  nosar: {
+    name: 'NoSAR',
+    folder: 'noSAR_1',
+    images: [
+      'roi14579_0074.png', 'roi159513_0083.png', 'roi16115_0062.png',
+      'roi171977_0026.png', 'roi181417_0059.png', 'roi228063_0027.png',
+      'roi23822_0084.png', 'roi25954_0054.png', 'roi263079_0077.png',
+      'roi265823_0049.png', 'roi271513_0017.png', 'roi274931_0080.png'
+    ]
+  },
+  utae: {
+    name: 'U-TAE',
+    folder: 'utae',
+    images: [
+      'roi352167_0082.png', 'roi340154_0038.png', 'roi332366_0008.png',
+      'roi33091_0075.png', 'roi321568_0005.png', 'roi317784_0078.png',
+      'roi314544_0013.png', 'roi31226_0087.png', 'roi308917_0011.png',
+      'roi306554_0092.png', 'roi304330_0056.png', 'roi303617_0071.png'
+    ]
+  }
+};
+
+// Function to load images into a grid
+function loadImages(tabId, images, folder) {
+  const grid = document.getElementById(`${tabId}-grid`);
+  grid.innerHTML = '';
+
+  images.forEach(imageName => {
+    const card = document.createElement('div');
+    card.className = 'image-card clickable-image';
+    
+    // Use relative path from images folder (one level up from website folder)
+    const imagePath = `../images/${folder}/${imageName}`;
+    
+    card.innerHTML = `
+      <img src="${imagePath}" alt="${imageName}" class="image-card-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23223344%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22%23aaa%22%3EImage not found%3C/text%3E%3C/svg%3E'">
+      <div class="image-card-label">${imageName}</div>
+    `;
+    
+    // Add click handler for modal
+    card.addEventListener('click', function(e) {
+      const img = this.querySelector('.image-card-img');
+      modal.classList.add('show');
+      modalImage.src = img.src;
+      modalImage.alt = imageName;
+      document.body.style.overflow = 'hidden';
+    });
+    
+    grid.appendChild(card);
+  });
+}
+
+// Tab switching functionality
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', function() {
+    const tabId = this.dataset.tab;
+
+    // Remove active class from all buttons and contents
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabContents.forEach(content => content.classList.remove('active'));
+
+    // Add active class to clicked button and corresponding content
+    this.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+
+    // Load images for the selected tab
+    if (modelData[tabId]) {
+      const model = modelData[tabId];
+      loadImages(tabId, model.images, model.folder);
+    }
+  });
+});
+
+// Load images for the first tab on page load
+window.addEventListener('load', function() {
+  const firstModel = modelData['ctgan'];
+  loadImages('ctgan', firstModel.images, firstModel.folder);
+});
+
