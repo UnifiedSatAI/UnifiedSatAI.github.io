@@ -30,13 +30,13 @@
 
 <section id="intro">
     <h2>Introduction</h2>
-    <p>The project Unified Deep Learning Benchmark for Satellite Image Restoration and Generation focuses on developing a standardized and reproducible benchmarking framework for evaluating modern deep learning models used in satellite image processing. In current research, different datasets, preprocessing methods, and evaluation metrics are often used independently, making it difficult to fairly compare results across models and tasks.</p>
+    <p>Deep learning methods for satellite image restoration have advanced rapidly across multiple tasks such as cloud removal and super-resolution. However, their evaluation remains fragmented, as existing benchmarks are typically task-specific and rely on different datasets, preprocessing pipelines, and metric implementations. This fragmentation makes results harder to reproduce and can make model comparison less transparent.</p>
     
-    <p>To address this limitation, the proposed system provides a unified evaluation pipeline that supports multiple satellite image processing tasks, including Cloud Removal (CR) and Super-Resolution (SR) image generation. The framework integrates widely used remote sensing datasets such as AllClear, SEN12MS-CR-TS, WorldStrat, PROBA-V SR, and SAT25K, while applying consistent normalization, spectral alignment, and metric evaluation procedures.</p>
+    <p>To address this problem, this project presents a modular, reproducible, and scalable benchmarking pipeline for satellite image restoration. The framework integrates dataset loading, preprocessing, model execution, metric computation, visualization, and experiment logging into a single unified evaluation workflow. By bringing all these components together, the system enables fair and consistent evaluation across different restoration tasks and models.</p>
     
-    <p>The goal of this project is to ensure fair comparison, reproducibility, and transparency in satellite image restoration and generation experiments by allowing different models to be tested under the same conditions. By combining dataset handling, model evaluation, metric computation, and visualization into a single system, the project provides a reliable tool for researchers working in remote sensing and deep learning.</p>
+    <p>The current implementation supports two representative restoration settings: cloud removal using the AllClear dataset and super-resolution using PROBA-V SR. The framework is designed to be extensible, allowing for future integration of additional datasets and restoration tasks while maintaining a shared evaluation structure.</p>
     
-    <p>This unified benchmarking approach helps improve the consistency of experimental results and supports the development of more accurate and reliable satellite image processing methods.</p>
+    <p>The main goal of this project is to support clearer model comparison, easier integration of new methods, and more transparent experimental reporting. By providing a shared evaluation structure, the framework helps reduce methodological inconsistency across restoration tasks and offers a practical foundation for future benchmarking research in remote sensing and satellite image processing.</p>
 </section>
 
 <section id="team">
@@ -44,8 +44,7 @@
     <div class="team-container">
         <div class="member">
             <h3>Royana Huseynova</h3>
-            <p class="role">Team Lead</p>
-            <p class="description">Project management and algorithm selection</p>
+            <p class="description">Pipeline design and architecture, dataset integration, metric integration, visualization pipeline, and literature review</p>
             <div class="contact">
                 <a href="mailto:rhuseynova11270@ada.edu.az" title="Email">✉️</a>
                 <a href="https://www.linkedin.com/in/royana-huseynova-6a9ba0333/" target="_blank" title="LinkedIn">🔗</a>
@@ -53,8 +52,7 @@
         </div>
         <div class="member">
             <h3>Nijat Alisoy</h3>
-            <p class="role">Dataset Integration</p>
-            <p class="description">Data preprocessing and normalization</p>
+            <p class="description">Dataset preparation and integration, preprocessing pipeline development, evaluation implementation, and metric integration</p>
             <div class="contact">
                 <a href="mailto:nalisoy17366@ada.edu.az" title="Email">✉️</a>
                 <a href="https://www.linkedin.com/in/nijat-alisoy-4776a4184/" target="_blank" title="LinkedIn">🔗</a>
@@ -62,8 +60,7 @@
         </div>
         <div class="member">
             <h3>Pasha Zulfugarli</h3>
-            <p class="role">Data Analysis & Web UI</p>
-            <p class="description">Analytics and presentation website</p>
+            <p class="description">Data analysis and validation, project website development, repository organization, and literature review</p>
             <div class="contact">
                 <a href="mailto:pzulfugarli13731@ada.edu.az" title="Email">✉️</a>
                 <a href="https://www.linkedin.com/in/pasa-zulfugarli/" target="_blank" title="LinkedIn">🔗</a>
@@ -71,8 +68,7 @@
         </div>
         <div class="member">
             <h3>Huseyn Sadatkhanov</h3>
-            <p class="role">Visualization & Experiments</p>
-            <p class="description">Visualization and model comparison</p>
+            <p class="description">Visualization and experiments, model comparison outputs, website development, and literature review</p>
             <div class="contact">
                 <a href="mailto:hsadatkhanov13770@ada.edu.az" title="Email">✉️</a>
                 <a href="https://www.linkedin.com/in/huseyn-sadatkhanov-0378181b4/" target="_blank" title="LinkedIn">🔗</a>
@@ -83,54 +79,68 @@
 
 <section id="project">
     <h2>Project Overview</h2>
-    <p>The Unified Deep Learning Benchmark for Satellite Image Restoration and Generation is designed as a modular and extensible benchmarking framework that enables consistent evaluation of deep learning models across multiple satellite image processing tasks. The system integrates dataset handling, preprocessing, model execution, metric computation, visualization, and experiment logging into a single unified pipeline.</p>
+    <p>The Unified Deep Learning Benchmark for Satellite Image Restoration is a modular, reproducible, and scalable benchmarking pipeline designed to organize the main stages of satellite image restoration evaluation into a single structured workflow. The framework integrates dataset loading, preprocessing, model execution, metric computation, visualization, and experiment logging into a unified evaluation process.</p>
     
-    <p>The framework supports multiple public satellite datasets and ensures that all inputs are processed using the same normalization rules, spectral band alignment, and validation procedures. This guarantees that different models can be evaluated under identical conditions, eliminating inconsistencies caused by dataset-specific preprocessing or incompatible evaluation protocols.</p>
+    <p>The framework follows a sequential evaluation pipeline: First, a task-specific dataset loader reads the selected benchmark data. Second, preprocessing prepares the input data for the selected model. Third, the model is executed through a shared inference interface. Fourth, the prediction is compared with the reference target using predefined metrics. Finally, the framework stores metric values, visual outputs, and configuration records together, enabling reproducible experiments.</p>
     
-    <p>The benchmarking pipeline allows execution of baseline and custom deep learning models for cloud removal, super-resolution, and high-definition image generation, while automatically computing standardized evaluation metrics such as PSNR, SSIM, SAM, ERGAS, and other quality measures. All results are saved in structured formats, enabling reproducible experiments and reliable comparison between models, datasets, and preprocessing settings.</p>
+    <p>A key design feature separates shared evaluation components from task-specific components. Shared components include metric computation, logging, visualization, and output organization. Task-specific components include dataset loading, input preparation, model adapters, and restoration targets. This separation allows the framework to remain reusable while still respecting the differences between different restoration tasks.</p>
     
-    <p>In addition to quantitative evaluation, the system provides visual comparison tools that display input images, model outputs, and reference images side-by-side, along with difference maps and zoomed regions for detailed analysis. Experiment configurations, dataset versions, and evaluation parameters are recorded automatically to ensure transparency and repeatability of results.</p>
-    
-    <p>By combining these components into a single unified environment, the project provides a practical and research-oriented benchmarking solution that simplifies satellite image evaluation workflows and supports more consistent and scientifically reliable experimentation.</p>
+    <p>The current implementation supports two representative restoration settings: cloud removal using AllClear and super-resolution using PROBA-V SR. The framework evaluates predictions using well-known reconstruction-oriented metrics including Peak Signal-to-Noise Ratio (PSNR), Structural Similarity Index Measure (SSIM), Spectral Angle Mapper (SAM), Erreur Relative Globale Adimensionnelle de Synthese (ERGAS), and Learned Perceptual Image Patch Similarity (LPIPS). The framework is designed to be extended through modular loaders, model adapters, metric functions, and visualization modules, making it suitable for gradual expansion to support additional datasets and restoration tasks.</p>
 </section>
 
 <section id="results">
     <h2>Results</h2>
-    <p class="results-intro">Explore the model outputs across different datasets and processing tasks. Click on any image to view it in full resolution.</p>
     
-    <div class="results-container">
-        <div class="tab-navigation">
-            <button class="tab-btn active" data-tab="ctgan">CTGAN</button>
-            <button class="tab-btn" data-tab="multitemporal">Multi-Temporal L2</button>
-            <button class="tab-btn" data-tab="nosar">NoSAR</button>
-            <button class="tab-btn" data-tab="utae">U-TAE</button>
-        </div>
+    <!-- Dataset Selection Tabs -->
+    <div class="dataset-tabs">
+        <button class="dataset-tab active" data-dataset="allclear">AllClear</button>
+        <button class="dataset-tab" data-dataset="probav">PROBA-V</button>
+    </div>
 
-        <!-- CTGAN Tab -->
-        <div class="tab-content active" id="ctgan">
-            <div class="image-grid" id="ctgan-grid">
-                <!-- Images will be loaded dynamically -->
+    <!-- AllClear Dataset -->
+    <div class="dataset-container active" id="allclear">
+        <div class="results-container">
+            <div class="tab-navigation">
+                <button class="tab-btn active" data-tab="allclear-multitemporal">MultiTemporal</button>
+                <button class="tab-btn" data-tab="allclear-nosar">noSAR</button>
+                <button class="tab-btn" data-tab="allclear-utae">UTAE</button>
+            </div>
+
+            <!-- MultiTemporal Tab -->
+            <div class="tab-content active" id="allclear-multitemporal">
+                <div class="image-grid" id="allclear-multitemporal-grid">
+                    <!-- Images will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- NoSAR Tab -->
+            <div class="tab-content" id="allclear-nosar">
+                <div class="image-grid" id="allclear-nosar-grid">
+                    <!-- Images will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- UTAE Tab -->
+            <div class="tab-content" id="allclear-utae">
+                <div class="image-grid" id="allclear-utae-grid">
+                    <!-- Images will be loaded dynamically -->
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Multi-Temporal L2 Tab -->
-        <div class="tab-content" id="multitemporal">
-            <div class="image-grid" id="multitemporal-grid">
-                <!-- Images will be loaded dynamically -->
+    <!-- PROBA-V Dataset -->
+    <div class="dataset-container" id="probav">
+        <div class="results-container">
+            <div class="tab-navigation">
+                <button class="tab-btn active" data-tab="probav-rams">RAMS</button>
             </div>
-        </div>
 
-        <!-- NoSAR Tab -->
-        <div class="tab-content" id="nosar">
-            <div class="image-grid" id="nosar-grid">
-                <!-- Images will be loaded dynamically -->
-            </div>
-        </div>
-
-        <!-- U-TAE Tab -->
-        <div class="tab-content" id="utae">
-            <div class="image-grid" id="utae-grid">
-                <!-- Images will be loaded dynamically -->
+            <!-- RAMS Tab -->
+            <div class="tab-content active" id="probav-rams">
+                <div class="image-grid" id="probav-rams-grid">
+                    <!-- Images will be loaded dynamically -->
+                </div>
             </div>
         </div>
     </div>
@@ -186,20 +196,26 @@
     <div class="papers-grid">
         <div class="paper-card">
             <div class="paper-icon">📄</div>
+            <h3>Final Paper</h3>
+            <p class="paper-semester">Semester II</p>
+            <a href="pdfs/FinalPaper.pdf" class="paper-btn" target="_blank">View</a>
+        </div>
+        <div class="paper-card">
+            <div class="paper-icon">📄</div>
             <h3>Research Report</h3>
-            <p class="paper-semester">Semester 1</p>
+            <p class="paper-semester">Semester I</p>
             <a href="pdfs/SSP Research Report.pdf" class="paper-btn" target="_blank">View</a>
         </div>
         <div class="paper-card">
             <div class="paper-icon">📋</div>
             <h3>User Design</h3>
-            <p class="paper-semester">Semester 1</p>
+            <p class="paper-semester">Semester I</p>
             <a href="pdfs/User Design.pdf" class="paper-btn" target="_blank">View</a>
         </div>
         <div class="paper-card">
             <div class="paper-icon">📑</div>
             <h3>Final Report</h3>
-            <p class="paper-semester">Semester 1</p>
+            <p class="paper-semester">Semester I</p>
             <a href="pdfs/Final Paper SDP2026.pdf" class="paper-btn" target="_blank">View</a>
         </div>
     </div>

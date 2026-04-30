@@ -392,6 +392,52 @@ section li {
   margin: 0 auto;
 }
 
+/* Dataset Tabs Styling */
+.dataset-tabs {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 48px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.dataset-tab {
+  padding: 16px 36px;
+  background: transparent;
+  border: 2px solid rgba(79, 195, 247, 0.4);
+  color: #a8d8ff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.4px;
+}
+
+.dataset-tab:hover {
+  color: #4fbeff;
+  border-color: rgba(79, 195, 247, 0.7);
+  background: rgba(79, 195, 247, 0.1);
+}
+
+.dataset-tab.active {
+  color: #fff;
+  border-color: #4fbeff;
+  background: linear-gradient(135deg, rgba(79, 195, 247, 0.2) 0%, rgba(11, 196, 222, 0.1) 100%);
+  box-shadow: 0 8px 24px rgba(79, 195, 247, 0.2);
+}
+
+/* Dataset Container */
+.dataset-container {
+  display: none;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.dataset-container.active {
+  display: block;
+}
+
 .tab-navigation {
   display: flex;
   gap: 16px;
@@ -430,10 +476,79 @@ section li {
 .tab-content {
   display: none;
   animation: fadeIn 0.4s ease-in-out;
+  position: relative;
 }
 
 .tab-content.active {
   display: block;
+}
+
+.tab-content + .load-more-btn,
+.tab-content + .show-less-btn {
+  display: inline-block;
+}
+
+.tab-content + .load-more-btn + .show-less-btn {
+  display: inline-block;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.load-more-btn {
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #4fbeff 0%, #0bc4de 100%);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 24px rgba(79, 195, 247, 0.3);
+}
+
+.load-more-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(79, 195, 247, 0.5);
+  background: linear-gradient(135deg, #5fccff 0%, #1bd4ee 100%);
+}
+
+.load-more-btn:active {
+  transform: translateY(-1px);
+}
+
+.show-less-btn {
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #ff9f43 0%, #ee5a6f 100%);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 24px rgba(255, 159, 67, 0.3);
+}
+
+.show-less-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(255, 159, 67, 0.5);
+  background: linear-gradient(135deg, #ffaa54 0%, #ff6b7f 100%);
+}
+
+.show-less-btn:active {
+  transform: translateY(-1px);
 }
 
 @keyframes fadeIn {
@@ -716,7 +831,7 @@ section li {
 
 .papers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 28px;
   max-width: 1300px;
   margin: 0 auto;
